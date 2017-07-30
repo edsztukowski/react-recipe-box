@@ -7,20 +7,30 @@ class RecipeContainer extends React.Component {
       recipes: [
         {
           title: 'Apple Pie',
-          ingredients: ['milk', 'apples']
+          ingredients: ['milk ', 'apples']
         },
         {
           title: 'Pumpkin Pie',
-          ingredients: ['Crust', 'Pumpkins']
+          ingredients: ['Crust ', 'Pumpkins']
         },
       ]
     }
   }
 
+
+
   render() {
+    var recipesList = this.state.recipes;
     return (
-      <div className="row recipe-list">
-      {this.state.recipes[0].title}
+      <div className="row all-recipes">
+      {recipesList.map(function(curr, index) {
+        return (
+          <div className="recipe-box">
+            <div className="recipe-title">Title: {curr.title}</div>
+            <div className="ingredients-list">Ingredients: {curr.ingredients}</div>
+          </div>
+        )
+      })}
       </div>
     )
   }
