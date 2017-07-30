@@ -7,11 +7,11 @@ class RecipeContainer extends React.Component {
       recipes: [
         {
           title: 'Apple Pie',
-          ingredients: ['milk ', 'apples']
+          ingredients: ['milk', 'apples']
         },
         {
           title: 'Pumpkin Pie',
-          ingredients: ['Crust ', 'Pumpkins']
+          ingredients: ['Crust', 'Pumpkins']
         },
       ]
     }
@@ -27,7 +27,18 @@ class RecipeContainer extends React.Component {
         return (
           <div className="recipe-box">
             <div className="recipe-title">Title: {curr.title}</div>
-            <div className="ingredients-list">Ingredients: {curr.ingredients}</div>
+            <div className="ingredients-container">
+              Ingredients:
+                {curr.ingredients.map(function(curr) {
+                  return (
+                    <ul className="ingredients-list">
+                      <li>
+                        {curr}
+                      </li>
+                    </ul>
+                  )
+                })}
+            </div>
           </div>
         )
       })}
