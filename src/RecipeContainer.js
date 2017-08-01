@@ -11,13 +11,19 @@ class RecipeContainer extends React.Component {
         },
         {
           title: 'Pumpkin Pie',
-          ingredients: ['Crust', 'Pumpkins']
+          ingredients: ['Crust', 'Pumpkins', 'Milk']
         },
       ]
     }
+    this.editButton = this.editButton.bind(this)
   }
 
+  editButton(props) {
 
+    //push this data to local storage
+    this.props.title;
+    this.props.ingredients
+  }
 
   render() {
     var recipesList = this.state.recipes;
@@ -26,9 +32,9 @@ class RecipeContainer extends React.Component {
       {recipesList.map(function(curr, index) {
         return (
           <div className="recipe-box">
-            <div className="recipe-title">Title: {curr.title}</div>
+            <div className="recipe-title"><h3>Title: {curr.title}</h3></div>
             <div className="ingredients-container">
-              Ingredients:
+              <h4>Ingredients:</h4>
                 {curr.ingredients.map(function(curr) {
                   return (
                     <ul className="ingredients-list">
@@ -38,6 +44,9 @@ class RecipeContainer extends React.Component {
                     </ul>
                   )
                 })}
+                <div className="recipe-buttons">
+                    <editButton title={curr.title} ingredients={curr.ingredients} />
+                </div>
             </div>
           </div>
         )
