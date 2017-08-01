@@ -4,18 +4,29 @@ class RecipeContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipes: [
-        {
-          title: 'Apple Pie',
-          ingredients: ['milk', 'apples']
-        },
-        {
-          title: 'Pumpkin Pie',
-          ingredients: ['Crust', 'Pumpkins', 'Milk']
-        },
-      ]
+      recipes: []
     }
     this.editButton = this.editButton.bind(this)
+  }
+
+  componentDidMount() {
+    var initialRecipe = [{
+      title: 'Apple Pie',
+      ingredients: ['milk', 'apples']
+    },
+    {
+      title: 'Pumpkin Pie',
+      ingredients: ['Crust', 'Pumpkins', 'Milk']
+    }];
+    localStorage.setItem('recipes', JSON.stringify(initialRecipe))
+    return (
+      this.setState(function()  {
+        return {
+          recipes:JSON.parse(localStorage.getItem('recipes'))
+        }
+      })
+    )
+
   }
 
   editButton(props) {
@@ -31,21 +42,21 @@ class RecipeContainer extends React.Component {
       <div className="row all-recipes">
       {recipesList.map(function(curr, index) {
         return (
-          <div className="recipe-box">
+          <div className="recipe-box" key={curr.title}>
             <div className="recipe-title"><h3>Title: {curr.title}</h3></div>
             <div className="ingredients-container">
               <h4>Ingredients:</h4>
-                {curr.ingredients.map(function(curr) {
+                {curr.ingredients.map(function(curr, index) {
                   return (
-                    <ul className="ingredients-list">
-                      <li>
+                    <ul key={curr + index} className="ingredients-list">
+                      <li key={curr}>
                         {curr}
                       </li>
                     </ul>
                   )
                 })}
                 <div className="recipe-buttons">
-                    <editButton title={curr.title} ingredients={curr.ingredients} />
+
                 </div>
             </div>
           </div>
