@@ -1,3 +1,15 @@
 .ingredients-container {
   visibility: 0;
 }
+
+.ingredients-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.recipe-box {
+  border: 1px solid #ccc;
+  margin: 1em;
+  padding: 1em;
+}
