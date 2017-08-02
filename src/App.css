@@ -13,3 +13,7 @@
   margin: 1em;
   padding: 1em;
 }
+
+.recipe-modal {
+  display: none;
+}
