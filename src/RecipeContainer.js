@@ -1,4 +1,5 @@
 var React = require('react')
+var EditRecipe = require('./EditRecipe')
 
 class RecipeContainer extends React.Component {
   constructor(props) {
@@ -16,11 +17,12 @@ class RecipeContainer extends React.Component {
       ]
     }
     var initialRecipe = this.state.recipes;
-    localStorage.setItem('recipes', JSON.stringify(initialRecipe))
-    this.editButton = this.editButton.bind(this)
+    localStorage.setItem('recipes', JSON.stringify(initialRecipe));
+    this.updateRecipe = this.updateRecipe.bind(this);
+    this.showModal = this.showModal.bind(this);
   }
 
-  editButton(props) {
+  updateRecipe(props) {
     return (
       this.setState(function()  {
         return {
@@ -28,6 +30,10 @@ class RecipeContainer extends React.Component {
         }
       })
     )
+  }
+
+  showModal() {
+    <div>test</div>
   }
 
   render() {
@@ -51,7 +57,12 @@ class RecipeContainer extends React.Component {
                   )
                 })}
                 <div className="recipe-buttons">
-
+                  <button className="edit btn">
+                    Edit
+                  </button>
+                </div>
+                <div className="recipe-modal">
+                  <EditRecipe title={curr.title} ingredients={curr.ingredients}/>
                 </div>
             </div>
           </div>

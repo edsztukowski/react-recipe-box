@@ -5,13 +5,22 @@ class EditRecipe extends React.Component {
     super(props);
     //fetch this data from local storage
     this.State = {
-      title: ''
-      ingredients: []
+      recipes: {
+        title: props.title,
+        ingredients: props.ingredients
+      }
     }
 
 
   }
 
+render() {
+  return(
+    <div>
+      state.recipes
+    </div>
+  )
+}
 
 }
 
