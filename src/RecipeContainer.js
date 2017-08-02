@@ -4,21 +4,23 @@ class RecipeContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipes: []
+      recipes: [
+        {
+          title: 'Apple Pie',
+          ingredients: ['milk', 'apples']
+        },
+        {
+          title: 'Pumpkin Pie',
+          ingredients: ['Crust', 'Pumpkins', 'Milk']
+        }
+      ]
     }
+    var initialRecipe = this.state.recipes;
+    localStorage.setItem('recipes', JSON.stringify(initialRecipe))
     this.editButton = this.editButton.bind(this)
   }
 
-  componentDidMount() {
-    var initialRecipe = [{
-      title: 'Apple Pie',
-      ingredients: ['milk', 'apples']
-    },
-    {
-      title: 'Pumpkin Pie',
-      ingredients: ['Crust', 'Pumpkins', 'Milk']
-    }];
-    localStorage.setItem('recipes', JSON.stringify(initialRecipe))
+  editButton(props) {
     return (
       this.setState(function()  {
         return {
@@ -26,17 +28,10 @@ class RecipeContainer extends React.Component {
         }
       })
     )
-
-  }
-
-  editButton(props) {
-
-    //push this data to local storage
-    this.props.title;
-    this.props.ingredients
   }
 
   render() {
+    console.log(this.state)
     var recipesList = this.state.recipes;
     return (
       <div className="row all-recipes">
