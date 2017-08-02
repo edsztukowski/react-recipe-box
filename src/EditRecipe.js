@@ -4,23 +4,23 @@ class EditRecipe extends React.Component {
   constructor(props) {
     super(props);
     //fetch this data from local storage
-    this.State = {
+    this.state = {
       recipes: {
         title: props.title,
         ingredients: props.ingredients
       }
     }
-
-
   }
 
-render() {
-  return(
-    <div>
-      state.recipes
-    </div>
-  )
-}
+
+  render() {
+    return(
+      <div className="recipe-form">
+        <p>{this.state.recipes.title}</p>
+        <p>{this.state.recipes.ingredients.join(", ")}</p>
+      </div>
+    )
+  }
 
 }
 
