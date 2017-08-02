@@ -33,11 +33,12 @@ class RecipeContainer extends React.Component {
   }
 
   showModal() {
+    return (
     <div>test</div>
+    )
   }
 
   render() {
-    console.log(this.state)
     var recipesList = this.state.recipes;
     return (
       <div className="row all-recipes">
