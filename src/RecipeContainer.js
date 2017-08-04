@@ -1,32 +1,39 @@
 var React = require('react')
 var EditRecipe = require('./EditRecipe')
+var Add = require('./Add')
 
 class RecipeContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      recipes: [
-        {
-          title: 'Apple Pie',
-          ingredients: ['milk', 'apples']
-        },
-        {
-          title: 'Pumpkin Pie',
-          ingredients: ['Crust', 'Pumpkins', 'Milk']
-        }
-      ]
-    }
-    var initialRecipe = this.state.recipes;
-    localStorage.setItem('recipes', JSON.stringify(initialRecipe));
+    this.state = JSON.parse(localStorage.getItem('recipes'))
     this.updateRecipe = this.updateRecipe.bind(this);
     this.showModal = this.showModal.bind(this);
+    this.addNew = this.addNew.bind(this);
+    this.updateRecipe = this.updateRecipe.bind(this)
   }
 
-  updateRecipe(props) {
+  addNew(recipeName, ingredients) {
+    var newStorage = JSON.parse(localStorage.getItem('recipes'));
+    var newObj = {
+      title: recipeName,
+      ingredients: [ingredients]
+    }
+    console.log(localStorage.recipes, 1);
+    console.log(this.state.recipes, 'state')
+    return (
+      newStorage.recipes.push(newObj),
+      console.log(localStorage.recipes, 2),
+      localStorage.setItem('recipes', JSON.stringify(newStorage.recipes)),
+      console.log(localStorage.recipes, 3),
+      this.updateRecipe()
+    )
+  }
+
+  updateRecipe() {
     return (
       this.setState(function()  {
         return {
-          recipes:JSON.parse(localStorage.getItem('recipes'))
+          recipes:JSON.parse(localStorage.getItem('recipes')),
         }
       })
     )
@@ -57,11 +64,6 @@ class RecipeContainer extends React.Component {
                     </ul>
                   )
                 })}
-                <div className="recipe-buttons">
-                  <button className="edit btn">
-                    Edit
-                  </button>
-                </div>
                 <div className="recipe-modal">
                   <EditRecipe title={curr.title} ingredients={curr.ingredients}/>
                 </div>
@@ -69,10 +71,26 @@ class RecipeContainer extends React.Component {
           </div>
         )
       })}
+
+      <div className="recipe-buttons">
+        <Add addFunction={this.addNew}/>
+      </div>
       </div>
     )
   }
-
 }
+
+localStorage.setItem('recipes', JSON.stringify({
+  recipes: [
+    {
+      title: 'Apple Pie',
+      ingredients: ['milk', 'apples']
+    },
+    {
+      title: 'Pumpkin Pie',
+      ingredients: ['Crust', 'Pumpkins', 'Milk']
+    }
+  ]
+}));
 
 module.exports = RecipeContainer
