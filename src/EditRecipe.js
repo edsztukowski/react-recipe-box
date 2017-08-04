@@ -12,7 +12,6 @@ class EditRecipe extends React.Component {
     }
   }
 
-
   render() {
     return(
       <div className="recipe-form">

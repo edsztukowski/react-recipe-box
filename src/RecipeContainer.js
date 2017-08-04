@@ -1,5 +1,6 @@
 var React = require('react')
 var EditRecipe = require('./EditRecipe')
+var Add = require('./Add')
 
 class RecipeContainer extends React.Component {
   constructor(props) {
@@ -7,7 +8,8 @@ class RecipeContainer extends React.Component {
     this.state = JSON.parse(localStorage.getItem('recipes'))
     this.updateRecipe = this.updateRecipe.bind(this);
     this.showModal = this.showModal.bind(this);
-    this.addNew = this.addNew.bind(this)
+    this.addNew = this.addNew.bind(this);
+    this.updateRecipe = this.updateRecipe.bind(this)
   }
 
   addNew(recipeName, ingredients) {
@@ -16,18 +18,22 @@ class RecipeContainer extends React.Component {
       title: recipeName,
       ingredients: [ingredients]
     }
+    console.log(localStorage.recipes, 1);
+    console.log(this.state.recipes, 'state')
     return (
       newStorage.recipes.push(newObj),
+      console.log(localStorage.recipes, 2),
       localStorage.setItem('recipes', JSON.stringify(newStorage.recipes)),
-      console.log(JSON.parse(localStorage.getItem('recipes')))
+      console.log(localStorage.recipes, 3),
+      this.updateRecipe()
     )
   }
 
-  updateRecipe(props) {
+  updateRecipe() {
     return (
       this.setState(function()  {
         return {
-          recipes:JSON.parse(localStorage.getItem('recipes'))
+          recipes:JSON.parse(localStorage.getItem('recipes')),
         }
       })
     )
@@ -63,19 +69,15 @@ class RecipeContainer extends React.Component {
                 </div>
             </div>
           </div>
-
         )
       })}
+
       <div className="recipe-buttons">
-        <button className="edit btn"
-        onClick={() => this.addNew('poop','water, fecal matter')} >
-          Add New
-        </button>
-        </div>
+        <Add addFunction={this.addNew}/>
+      </div>
       </div>
     )
   }
-
 }
 
 localStorage.setItem('recipes', JSON.stringify({
