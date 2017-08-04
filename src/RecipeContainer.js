@@ -1,3 +1,7 @@
+//TO DO
+  //for some reason state is re-setting and local storage is as well at the re-render
+  //could be because setting localStorage at bottom
+
 var React = require('react')
 var EditRecipe = require('./EditRecipe')
 var Add = require('./Add')
