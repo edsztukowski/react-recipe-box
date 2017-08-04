@@ -2,29 +2,51 @@ var React = require('react')
 var EditRecipe = require('./EditRecipe')
 var Add = require('./Add')
 
+//Check if local storage exists else set it
+
+if (localStorage.getItem("recipes") === null) {
+  localStorage.setItem('recipes', JSON.stringify({
+    recipes: [
+      {
+        title: 'Apple Pie',
+        ingredients: ['milk', 'apples']
+      },
+      {
+        title: 'Pumpkin Pie',
+        ingredients: ['Crust', 'Pumpkins', 'Milk']
+      }
+    ]
+  }));
+} else {
+  localStorage.recipes = localStorage.recipes
+}
+
+
 class RecipeContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = JSON.parse(localStorage.getItem('recipes'))
-    this.updateRecipe = this.updateRecipe.bind(this);
+    this.state = {
+      recipes: JSON.parse(localStorage.getItem('recipes')).recipes
+    }
     this.showModal = this.showModal.bind(this);
     this.addNew = this.addNew.bind(this);
     this.updateRecipe = this.updateRecipe.bind(this)
+
   }
 
+
   addNew(recipeName, ingredients) {
-    var newStorage = JSON.parse(localStorage.getItem('recipes'));
+    var newStorage = {
+      recipes: JSON.parse(localStorage.getItem('recipes')).recipes
+    }
     var newObj = {
       title: recipeName,
       ingredients: [ingredients]
     }
-    console.log(localStorage.recipes, 1);
-    console.log(this.state.recipes, 'state')
     return (
       newStorage.recipes.push(newObj),
-      console.log(localStorage.recipes, 2),
-      localStorage.setItem('recipes', JSON.stringify(newStorage.recipes)),
-      console.log(localStorage.recipes, 3),
+      localStorage.setItem('recipes', JSON.stringify(newStorage)),
+      console.log(newStorage, 'new storage'),
       this.updateRecipe()
     )
   }
@@ -33,7 +55,9 @@ class RecipeContainer extends React.Component {
     return (
       this.setState(function()  {
         return {
-          recipes:JSON.parse(localStorage.getItem('recipes')),
+
+          recipes:JSON.parse(localStorage.getItem('recipes')).recipes
+
         }
       })
     )
@@ -79,18 +103,5 @@ class RecipeContainer extends React.Component {
     )
   }
 }
-
-localStorage.setItem('recipes', JSON.stringify({
-  recipes: [
-    {
-      title: 'Apple Pie',
-      ingredients: ['milk', 'apples']
-    },
-    {
-      title: 'Pumpkin Pie',
-      ingredients: ['Crust', 'Pumpkins', 'Milk']
-    }
-  ]
-}));
 
 module.exports = RecipeContainer
