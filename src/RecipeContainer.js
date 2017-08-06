@@ -46,7 +46,6 @@ class RecipeContainer extends React.Component {
     return (
       newStorage.recipes.push(newObj),
       localStorage.setItem('recipes', JSON.stringify(newStorage)),
-      console.log(newStorage, 'new storage'),
       this.updateRecipe()
     )
   }
@@ -89,7 +88,7 @@ class RecipeContainer extends React.Component {
                   )
                 })}
                 <div className="recipe-modal">
-                  <EditRecipe title={curr.title} ingredients={curr.ingredients}/>
+                  <EditRecipe update={this.updateRecipe} title={curr.title} ingredients={curr.ingredients}/>
                 </div>
             </div>
           </div>
