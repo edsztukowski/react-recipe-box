@@ -1,18 +1,8 @@
-//Modal pops up with edit function
-  //this will create a new object for the recipe
-  //update function can then run when ready
-    //the update will do the following
-      //search through local storage for the object that has the same title
-      //splice it
-      //as part of the splice, replace is with the new object made in edit
-      //update function can be the same
-
 var React = require('react');
 
 class EditRecipe extends React.Component {
   constructor(props) {
     super(props);
-    //fetch this data from local storage?
     this.state = {
       recipes: {
         title: props.title,
