@@ -1,20 +1,30 @@
+h1 {
+  text-align: center;
+}
+
 .ingredients-container {
   visibility: 0;
 }
 
 .ingredients-list {
   list-style-type: none;
-  padding-left: 0;
+  padding: 1em;
   margin-bottom: 0;
+  border-bottom: 1px solid #ccc;
+  text-transform: capitalize;
+  background: #fff;
+}
+
+.ingredients-list:last-of-type {
+  border-bottom: 0;
 }
 
 .recipe-box {
-  border: 1px solid #ccc;
-  margin: 1em;
+  background: #ededed;
   padding: 1em;
+  margin: 0 auto 1em;
 }
 
 .recipe-modal {
-  border: 1px solid;
-  margin-top: 1em;
+  display: none;
 }

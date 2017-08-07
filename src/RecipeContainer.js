@@ -9,7 +9,7 @@ if (localStorage.getItem("recipes") === null) {
     recipes: [
       {
         title: 'Apple Pie',
-        ingredients: ['milk', 'apples']
+        ingredients: ['Milk', 'Apples']
       },
       {
         title: 'Pumpkin Pie',
@@ -75,9 +75,8 @@ class RecipeContainer extends React.Component {
       {recipesList.map(function(curr, index) {
         return (
           <div className="recipe-box" key={curr.title}>
-            <div className="recipe-title"><h3>Title: {curr.title}</h3></div>
+            <div className="recipe-title"><h3>{curr.title}</h3></div>
             <div className="ingredients-container">
-              <h4>Ingredients:</h4>
                 {curr.ingredients.map(function(curr, index) {
                   return (
                     <ul key={curr + index} className="ingredients-list">
