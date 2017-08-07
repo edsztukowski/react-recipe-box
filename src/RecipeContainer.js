@@ -1,6 +1,8 @@
-var React = require('react')
-var EditRecipe = require('./EditRecipe')
-var Add = require('./Add')
+var React = require('react');
+var EditRecipe = require('./EditRecipe');
+var Add = require('./Add');
+var Accordion = require('react-bootstrap').Accordion;
+var Panel = require('react-bootstrap').Panel;
 
 //Check if local storage exists else set it
 
@@ -26,7 +28,7 @@ class RecipeContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipes: JSON.parse(localStorage.getItem('recipes')).recipes
+      recipes: JSON.parse(localStorage.getItem('recipes')).recipes,
     }
     this.showModal = this.showModal.bind(this);
     this.addNew = this.addNew.bind(this);
@@ -68,6 +70,7 @@ class RecipeContainer extends React.Component {
     )
   }
 
+
   render() {
     var recipesList = this.state.recipes;
     return (
@@ -75,21 +78,24 @@ class RecipeContainer extends React.Component {
       {recipesList.map(function(curr, index) {
         return (
           <div className="recipe-box" key={curr.title}>
-            <div className="recipe-title"><h3>{curr.title}</h3></div>
-            <div className="ingredients-container">
-                {curr.ingredients.map(function(curr, index) {
-                  return (
-                    <ul key={curr + index} className="ingredients-list">
-                      <li key={curr}>
-                        {curr}
-                      </li>
-                    </ul>
-                  )
-                })}
-                <div className="recipe-modal">
-                  <EditRecipe update={this.updateRecipe} title={curr.title} ingredients={curr.ingredients}/>
-                </div>
-            </div>
+            <Accordion>
+               <Panel header={curr.title} eventKey={curr.index} expanded={false}>
+               <div className="ingredients-container">
+                   {curr.ingredients.map(function(curr, index) {
+                     return (
+                       <ul key={curr + index} className="ingredients-list">
+                         <li key={curr}>
+                           {curr}
+                         </li>
+                       </ul>
+                     )
+                   })}
+                   <div className="recipe-modal">
+                     <EditRecipe title={curr.title} ingredients={curr.ingredients}/>
+                   </div>
+               </div>
+               </Panel>
+            </Accordion>
           </div>
         )
       })}
