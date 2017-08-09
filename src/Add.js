@@ -9,6 +9,7 @@ class Add extends React.Component {
     }
     this.handleName = this.handleName.bind(this);
     this.handleIngredients = this.handleIngredients.bind(this);
+    this.addNew = this.addNew.bind(this);
 
   }
   handleName(event) {
@@ -29,11 +30,24 @@ class Add extends React.Component {
     })
   }
 
+  addNew(recipeName, ingredients) {
+    var newStorage = {
+      recipes: JSON.parse(localStorage.getItem('recipes')).recipes
+    }
+    var newObj = {
+      title: recipeName,
+      ingredients: ingredients.split(',')
+    }
+    return (
+      newStorage.recipes.push(newObj),
+      localStorage.setItem('recipes', JSON.stringify(newStorage))
+
+    )
+  }
 
   render() {
     return (
-
-        <form onSubmit={this.props.addFunction.bind(null,this.state.recipeName, this.state.ingredients)}>
+        <form onSubmit={this.addNew.bind(null,this.state.recipeName, this.state.ingredients)}>
 
         <label className="header" htmlFor="newRecipe">
           Add New Recipe
