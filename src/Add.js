@@ -4,8 +4,8 @@ class Add extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipeName: 'test',
-      ingredients: ['test','test']
+      recipeName: '',
+      ingredients: []
     }
     this.handleName = this.handleName.bind(this);
     this.handleIngredients = this.handleIngredients.bind(this);
