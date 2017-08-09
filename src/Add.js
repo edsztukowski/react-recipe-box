@@ -36,12 +36,12 @@ class Add extends React.Component {
     }
     var newObj = {
       title: recipeName,
-      ingredients: ingredients.split(', ')
+      ingredients: ingredients.split(',')
     }
     return (
       newStorage.recipes.push(newObj),
-      localStorage.setItem('recipes', JSON.stringify(newStorage)),
-      this.updateRecipe()
+      localStorage.setItem('recipes', JSON.stringify(newStorage))
+
     )
   }
 

@@ -22,9 +22,5 @@ h1 {
 .recipe-box {
   background: #ededed;
   padding: 1em;
-  margin: 0 auto 1em;
-}
-
-.recipe-modal {
-  display: none;
+  margin: 0 auto 0;
 }

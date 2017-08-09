@@ -19,7 +19,7 @@ class EditRecipe extends React.Component {
     }
     for (var i = 0; i < newStorage.recipes.length; i++) {
       if (newStorage.recipes[i].title === this.props.title) {
-        newStorage.recipes[i].ingredients = this.state.recipes.ingredients;
+        newStorage.recipes[i].ingredients = this.state.recipes.ingredients.split(',');
       }
     }
     localStorage.setItem('recipes', JSON.stringify(newStorage));
@@ -31,7 +31,7 @@ class EditRecipe extends React.Component {
       return {
         recipes: {
           title: this.state.title,
-          ingredients:value.split(', ')
+          ingredients:value
         }
       }
     })
