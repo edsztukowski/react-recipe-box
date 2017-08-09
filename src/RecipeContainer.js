@@ -22,7 +22,7 @@ class RecipeContainer extends React.Component {
     }
     var newObj = {
       title: recipeName,
-      ingredients: [ingredients]
+      ingredients: ingredients.split(', ')
     }
     return (
       newStorage.recipes.push(newObj),
@@ -49,8 +49,7 @@ class RecipeContainer extends React.Component {
         return (
           <div className="recipe-box" key={curr.title}>
             <Accordion>
-               <Panel header={curr.title} eventKey={1} expanded={false}>
-               <div className="ingredients-container">
+               <Panel className="ingredients-container" header={curr.title} eventKey={1} expanded={false}>
                    {curr.ingredients.map(function(curr, index) {
                      return (
                        <ul key={curr + index} className="ingredients-list">
@@ -63,7 +62,6 @@ class RecipeContainer extends React.Component {
                    <div className="recipe-modal">
                      <EditRecipe title={curr.title} ingredients={curr.ingredients}/>
                    </div>
-               </div>
                </Panel>
             </Accordion>
           </div>
