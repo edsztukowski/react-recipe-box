@@ -49,7 +49,7 @@ class Add extends React.Component {
     return (
         <form onSubmit={this.addNew.bind(null,this.state.recipeName, this.state.ingredients)}>
 
-        <label className="header" htmlFor="newRecipe">
+        <label className="add-header" htmlFor="newRecipe">
           Add New Recipe
         </label>
         <input
@@ -68,8 +68,8 @@ class Add extends React.Component {
           value={this.state.ingredients}
           onChange={this.handleIngredients}
         />
-        <button>
-
+      <button className="btn">
+          SAVE
         </button>
       </form>
     )

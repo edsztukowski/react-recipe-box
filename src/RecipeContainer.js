@@ -1,18 +1,30 @@
-var React = require('react');
+var React = require('react')
 var EditRecipe = require('./EditRecipe');
 var Add = require('./Add');
 var Accordion = require('react-bootstrap').Accordion;
 var Panel = require('react-bootstrap').Panel;
+var Modal = require('react-bootstrap').Modal;
+var Button = require('react-bootstrap').Button;
 
-//Check if local storage exists else set it
 
 class RecipeContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipes: JSON.parse(localStorage.getItem('recipes')).recipes
+      recipes: JSON.parse(localStorage.getItem('recipes')).recipes,
+      showModal: false
     }
-    this.updateRecipe = this.updateRecipe.bind(this)
+    this.updateRecipe = this.updateRecipe.bind(this);
+    this.modalClose = this.modalClose.bind(this);
+    this.modalOpen = this.modalOpen.bind(this);
+  }
+
+  modalClose() {
+    this.setState({ showModal: false });
+  }
+
+  modalOpen() {
+    this.setState({ showModal: true });
   }
 
   updateRecipe() {
@@ -50,13 +62,28 @@ class RecipeContainer extends React.Component {
           )
         })}
         <div className="recipe-buttons">
-          <Add />
-        </div>
+          <Button
+           bsStyle="primary"
+           bsSize="large"
+           onClick={this.modalOpen}
+          >
+            Add New
+          </Button>
+          <Modal show={this.state.showModal} onHide={this.modalClose}>
+            <Modal.Body>
+              <Add />
+            </Modal.Body>
+            <Modal.Footer className="modal-footer">
+              <p>To add a new recipe, add a title, and then recipes separated with commas without spaces</p>
+              <Button onClick={this.modalClose}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+          </div>
       </div>
     )
   }
 }
-
+//Check if local storage exists else set it
 if (localStorage.getItem("recipes") === null) {
   localStorage.setItem('recipes', JSON.stringify({
     recipes: [
