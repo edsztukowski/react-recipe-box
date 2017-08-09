@@ -12,23 +12,7 @@ class RecipeContainer extends React.Component {
     this.state = {
       recipes: JSON.parse(localStorage.getItem('recipes')).recipes
     }
-    this.addNew = this.addNew.bind(this);
     this.updateRecipe = this.updateRecipe.bind(this)
-  }
-
-  addNew(recipeName, ingredients) {
-    var newStorage = {
-      recipes: JSON.parse(localStorage.getItem('recipes')).recipes
-    }
-    var newObj = {
-      title: recipeName,
-      ingredients: ingredients.split(', ')
-    }
-    return (
-      newStorage.recipes.push(newObj),
-      localStorage.setItem('recipes', JSON.stringify(newStorage)),
-      this.updateRecipe()
-    )
   }
 
   updateRecipe() {
@@ -45,10 +29,9 @@ class RecipeContainer extends React.Component {
     var recipesList = this.state.recipes;
     return (
       <div className="row all-recipes">
-      {recipesList.map(function(curr, index) {
-        return (
-          <div className="recipe-box" key={curr.title}>
-            <Accordion>
+        {recipesList.map(function(curr, index) {
+          return (
+            <Accordion className="recipe-box" key= {curr.title}>
                <Panel className="ingredients-container" header={curr.title} eventKey={1} expanded={false}>
                    {curr.ingredients.map(function(curr, index) {
                      return (
@@ -64,12 +47,11 @@ class RecipeContainer extends React.Component {
                    </div>
                </Panel>
             </Accordion>
-          </div>
-        )
-      })}
-      <div className="recipe-buttons">
-        <Add addFunction={this.addNew}/>
-      </div>
+          )
+        })}
+        <div className="recipe-buttons">
+          <Add />
+        </div>
       </div>
     )
   }

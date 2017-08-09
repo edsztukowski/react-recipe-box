@@ -25,7 +25,6 @@ class EditRecipe extends React.Component {
     localStorage.setItem('recipes', JSON.stringify(newStorage));
   }
 
-
   handleIngredients(event) {
     var value = event.target.value;
     this.setState(function() {
