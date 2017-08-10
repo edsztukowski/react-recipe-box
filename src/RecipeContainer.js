@@ -61,9 +61,9 @@ class RecipeContainer extends React.Component {
             </Accordion>
           )
         })}
-        <div className="recipe-buttons">
+        <div className="add-btn">
           <Button
-           bsStyle="primary"
+           bsStyle="success"
            bsSize="large"
            onClick={this.modalOpen}
           >
@@ -74,8 +74,8 @@ class RecipeContainer extends React.Component {
               <Add />
             </Modal.Body>
             <Modal.Footer className="modal-footer">
-              <p>To add a new recipe, add a title, and then recipes separated with commas without spaces</p>
-              <Button onClick={this.modalClose}>Close</Button>
+              <p>To add a new recipe, add a title, and then ingredients separated by commas</p>
+              <Button className="close-btn" onClick={this.modalClose}>Close</Button>
             </Modal.Footer>
           </Modal>
           </div>

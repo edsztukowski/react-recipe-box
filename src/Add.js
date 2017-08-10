@@ -41,37 +41,37 @@ class Add extends React.Component {
     return (
       newStorage.recipes.push(newObj),
       localStorage.setItem('recipes', JSON.stringify(newStorage))
-
     )
   }
 
   render() {
     return (
-        <form onSubmit={this.addNew.bind(null,this.state.recipeName, this.state.ingredients)}>
-
-        <label className="add-header" htmlFor="newRecipe">
-          Add New Recipe
-        </label>
-        <input
-          id="title"
-          placeholder="new recipe title"
-          type="text"
-          autoComplete="off"
-          value={this.state.recipeName}
-          onChange={this.handleName}
-        />
-        <input
-          id="ingredients"
-          placeholder="new recipe ingredients"
-          type="text"
-          autoComplete="off"
-          value={this.state.ingredients}
-          onChange={this.handleIngredients}
-        />
-      <button className="btn">
-          SAVE
-        </button>
-      </form>
+        <form className="add-form" onSubmit={this.addNew.bind(null,this.state.recipeName, this.state.ingredients)}>
+          <label className="add-header" htmlFor="newRecipe">
+            Add New Recipe
+          </label>
+          <div className="flex-row">
+            <input
+              id="title"
+              placeholder="new recipe title"
+              type="text"
+              autoComplete="off"
+              value={this.state.recipeName}
+              onChange={this.handleName}
+            />
+            <input
+              id="ingredients"
+              placeholder="new recipe ingredients"
+              type="text"
+              autoComplete="off"
+              value={this.state.ingredients}
+              onChange={this.handleIngredients}
+            />
+          </div>
+          <button className="btn save-btn">
+              SAVE
+          </button>
+        </form>
     )
   }
 
