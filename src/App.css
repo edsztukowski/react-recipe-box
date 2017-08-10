@@ -1,5 +1,20 @@
+.header-row {
+  margin-bottom: 1em;
+}
+
 h1 {
   text-align: center;
+}
+
+hr {
+    height: 4px;
+    width: 70px;
+    text-align: center;
+    position: relative;
+    background: #57bc90;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    border: 0;
 }
 
 .ingredients-container {
@@ -23,4 +38,62 @@ h1 {
   background: #ededed;
   padding: 1em;
   margin: 0 auto 0;
+}
+
+.add-header {
+  display: block;
+  text-align: center;
+  margin-bottom: 1.5em;
+  font-size: 25px;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.add-form input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.add-form input:focus {
+  outline: 0;
+  border-bottom: 1px solid #333;
+}
+
+.save-btn {
+  width: 75%;
+  margin: 3em auto 0;
+  display: block;
+  background-color: #52B3D9;
+  color: #fefefe
+}
+
+.save-btn:hover  {
+  color: #fefefe;
+  opacity: 0.7;
+}
+
+.modal-body {
+  padding: 30px;
+}
+
+.modal-footer p {
+  text-align: left;
+}
+
+.close-btn {
+  background: #EC644B;
+  color: #f3f3f3;
+}
+
+button.btn-default.close-btn:hover, button.btn-default.close-btn:focus, button.btn-default.close-btn:active {
+  background: #EC644B;
+  color: #f3f3f3;
+  opacity: 0.7;
+}
+
+.add-btn {
+  margin-top: 3em;
 }
