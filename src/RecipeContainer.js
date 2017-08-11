@@ -12,19 +12,37 @@ class RecipeContainer extends React.Component {
     super(props);
     this.state = {
       recipes: JSON.parse(localStorage.getItem('recipes')).recipes,
-      showModal: false
+      showModal1: false,
+      showModal2: false,
+      activeModal: null
     }
+    this.clickHandler = this.clickHandler.bind(this);
     this.updateRecipe = this.updateRecipe.bind(this);
-    this.modalClose = this.modalClose.bind(this);
-    this.modalOpen = this.modalOpen.bind(this);
+    this.addClose = this.addClose.bind(this);
+    this.addOpen = this.addOpen.bind(this);
+    this.editClose = this.editClose.bind(this);
+    this.editOpen = this.editOpen.bind(this);
   }
 
-  modalClose() {
-    this.setState({ showModal: false });
+  clickHandler(e, index) {
+    this.setState({ activeModal: index })
   }
 
-  modalOpen() {
-    this.setState({ showModal: true });
+  addClose() {
+    this.setState({ showModal1: false});
+  }
+
+  addOpen() {
+    this.setState({ showModal1: true});
+  }
+
+  editClose() {
+    this.setState({ showModal2: false});
+    this.setState({ activeModal: null })
+  }
+
+  editOpen() {
+    this.setState({ showModal2: true});
   }
 
   updateRecipe() {
@@ -53,29 +71,46 @@ class RecipeContainer extends React.Component {
                          </li>
                        </ul>
                      )
-                   })}
+                   }, this)}
                    <div className="recipe-modal">
-                     <EditRecipe title={curr.title} ingredients={curr.ingredients}/>
+                   <div className="edit-btn">
+                     <Button
+                      bsStyle="success"
+                      bsSize="large"
+                      onClick={e => this.clickHandler(e, index)}
+                     >
+                       Edit
+                     </Button>
+                    </div>
+                    <Modal
+                      id={curr}
+                      show={this.state.activeModal === index}
+                      onHide={this.editClose}
+                      >
+                     <Modal.Body>
+                        <EditRecipe title={curr.title} ingredients={curr.ingredients}/>
+                     </Modal.Body>
+                     </Modal>
                    </div>
                </Panel>
             </Accordion>
           )
-        })}
+        }, this)}
         <div className="add-btn">
           <Button
            bsStyle="success"
            bsSize="large"
-           onClick={this.modalOpen}
+           onClick={this.addOpen}
           >
             Add New
           </Button>
-          <Modal show={this.state.showModal} onHide={this.modalClose}>
+          <Modal show={this.state.showModal1} onHide={this.addClose}>
             <Modal.Body>
               <Add />
             </Modal.Body>
             <Modal.Footer className="modal-footer">
               <p>To add a new recipe, add a title, and then ingredients separated by commas</p>
-              <Button className="close-btn" onClick={this.modalClose}>Close</Button>
+              <Button className="close-btn" onClick={this.addClose}>Close</Button>
             </Modal.Footer>
           </Modal>
           </div>
