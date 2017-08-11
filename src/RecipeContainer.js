@@ -13,13 +13,19 @@ class RecipeContainer extends React.Component {
     this.state = {
       recipes: JSON.parse(localStorage.getItem('recipes')).recipes,
       showModal1: false,
-      showModal2: false
+      showModal2: false,
+      activeModal: null
     }
+    this.clickHandler = this.clickHandler.bind(this);
     this.updateRecipe = this.updateRecipe.bind(this);
     this.addClose = this.addClose.bind(this);
     this.addOpen = this.addOpen.bind(this);
     this.editClose = this.editClose.bind(this);
     this.editOpen = this.editOpen.bind(this);
+  }
+
+  clickHandler(e, index) {
+    this.setState({ activeModal: index })
   }
 
   addClose() {
@@ -32,6 +38,7 @@ class RecipeContainer extends React.Component {
 
   editClose() {
     this.setState({ showModal2: false});
+    this.setState({ activeModal: null })
   }
 
   editOpen() {
@@ -70,14 +77,18 @@ class RecipeContainer extends React.Component {
                      <Button
                       bsStyle="success"
                       bsSize="large"
-                      onClick={this.editOpen.bind(this)}
+                      onClick={e => this.clickHandler(e, index)}
                      >
                        Edit
                      </Button>
                     </div>
-                   <Modal show={this.state.showModal2} onHide={this.editClose.bind(this)}>
+                    <Modal
+                      id={curr}
+                      show={this.state.activeModal === index}
+                      onHide={this.editClose}
+                      >
                      <Modal.Body>
-                       <EditRecipe title={curr.title} ingredients={curr.ingredients}/>
+                        <EditRecipe title={curr.title} ingredients={curr.ingredients}/>
                      </Modal.Body>
                      </Modal>
                    </div>
