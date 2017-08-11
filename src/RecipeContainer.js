@@ -1,8 +1,6 @@
 var React = require('react')
 var Add = require('./Add');
 var IngredientsComponent = require('./IngredientsComponent')
-var Button = require('react-bootstrap').Button;
-var Modal = require('react-bootstrap').Modal;
 
 
 class RecipeContainer extends React.Component {
@@ -71,27 +69,11 @@ class RecipeContainer extends React.Component {
             />
           )
         }, this)}
-
-
-
-        <div className="add-btn">
-          <Button
-           bsStyle="success"
-           bsSize="large"
-           onClick={this.addOpen}
-          >
-            Add New
-          </Button>
-          <Modal show={this.state.showModal1} onHide={this.addClose}>
-            <Modal.Body>
-              <Add />
-            </Modal.Body>
-            <Modal.Footer className="modal-footer">
-              <p>To add a new recipe, add a title, and then ingredients separated by commas</p>
-              <Button className="close-btn" onClick={this.addClose}>Close</Button>
-            </Modal.Footer>
-          </Modal>
-          </div>
+          <Add
+            modalShow={this.state.showModal1}
+            modalHide={this.addClose}
+            btnClick={this.addOpen}
+          />
       </div>
     )
   }
