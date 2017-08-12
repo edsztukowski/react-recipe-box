@@ -32,10 +32,10 @@ function IngredientsComponent(props) {
               <Modal
                 id={props.curr}
                 show={props.modalShow === props.index}
-                onHide={props.modalClose}
+                onHide={props.modalHide}
                 >
                <Modal.Body>
-                  <EditRecipe title={props.title} ingredients={props.ingredients}/>
+                  <EditRecipe hideModal={props.modalHide} title={props.title} ingredients={props.ingredients}/>
                </Modal.Body>
                </Modal>
              </div>
