@@ -31,7 +31,7 @@ class EditRecipe extends React.Component {
     this.setState(function() {
       return {
         recipes: {
-          title: this.state.title,
+          title: this.state.recipes.title,
           ingredients:value
         }
       }
@@ -40,10 +40,10 @@ class EditRecipe extends React.Component {
 
   render() {
     return(
-      <div className="recipe-form">
+      <div className="edit-form">
         <form onSubmit={this.handleEdit}>
-        <h2>{this.state.recipes.title}</h2>
-        <p>Edit recipes with comma separated values</p>
+        <h2 className="edit-header">{this.state.recipes.title}</h2>
+        <p>Edit recipes with comma separated values and hit enter</p>
           <input
             id="ingredients"
             placeholder="new recipe ingredients"
