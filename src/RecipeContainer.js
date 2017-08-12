@@ -1,10 +1,6 @@
 var React = require('react')
-var EditRecipe = require('./EditRecipe');
 var Add = require('./Add');
-var Accordion = require('react-bootstrap').Accordion;
-var Panel = require('react-bootstrap').Panel;
-var Modal = require('react-bootstrap').Modal;
-var Button = require('react-bootstrap').Button;
+var IngredientsComponent = require('./IngredientsComponent')
 
 
 class RecipeContainer extends React.Component {
@@ -61,59 +57,23 @@ class RecipeContainer extends React.Component {
       <div className="row all-recipes">
         {recipesList.map(function(curr, index) {
           return (
-            <Accordion className="recipe-box" key= {curr.title}>
-               <Panel className="ingredients-container" header={curr.title} eventKey={1} expanded={false}>
-                   {curr.ingredients.map(function(curr, index) {
-                     return (
-                       <ul key={curr + index} className="ingredients-list">
-                         <li key={curr}>
-                           {curr}
-                         </li>
-                       </ul>
-                     )
-                   }, this)}
-                   <div className="recipe-modal">
-                   <div className="edit-btn">
-                     <Button
-                      bsStyle="success"
-                      bsSize="large"
-                      onClick={e => this.clickHandler(e, index)}
-                     >
-                       Edit
-                     </Button>
-                    </div>
-                    <Modal
-                      id={curr}
-                      show={this.state.activeModal === index}
-                      onHide={this.editClose}
-                      >
-                     <Modal.Body>
-                        <EditRecipe title={curr.title} ingredients={curr.ingredients}/>
-                     </Modal.Body>
-                     </Modal>
-                   </div>
-               </Panel>
-            </Accordion>
+            <IngredientsComponent
+              curr={curr}
+              title={curr.title}
+              index={index}
+              ingredients={curr.ingredients}
+              modalShow={this.state.activeModal}
+              modalHide={this.editClose}
+              clickHandler={e => this.clickHandler(e, index)}
+              key={curr + index}
+            />
           )
         }, this)}
-        <div className="add-btn">
-          <Button
-           bsStyle="success"
-           bsSize="large"
-           onClick={this.addOpen}
-          >
-            Add New
-          </Button>
-          <Modal show={this.state.showModal1} onHide={this.addClose}>
-            <Modal.Body>
-              <Add />
-            </Modal.Body>
-            <Modal.Footer className="modal-footer">
-              <p>To add a new recipe, add a title, and then ingredients separated by commas</p>
-              <Button className="close-btn" onClick={this.addClose}>Close</Button>
-            </Modal.Footer>
-          </Modal>
-          </div>
+          <Add
+            modalShow={this.state.showModal1}
+            modalHide={this.addClose}
+            btnClick={this.addOpen}
+          />
       </div>
     )
   }
