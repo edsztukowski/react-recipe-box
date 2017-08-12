@@ -59,7 +59,7 @@ class Add extends React.Component {
           </Button>
         </div>
 
-      <Modal show={this.props.modalShow} onHide={this.props.modalClose}>
+      <Modal show={this.props.modalShow} onHide={this.props.modalHide}>
         <Modal.Body>
           <form className="add-form" onSubmit={this.addNew.bind(null,this.state.recipeName, this.state.ingredients)}>
             <label className="add-header" htmlFor="newRecipe">
@@ -91,7 +91,7 @@ class Add extends React.Component {
         </Modal.Body>
         <Modal.Footer className="modal-footer">
           <p>To add a new recipe, add a title, and then ingredients separated by commas</p>
-          <Button className="close-btn" onClick={this.addClose}>Close</Button>
+          <Button className="close-btn" onClick={this.props.modalHide}>Close</Button>
         </Modal.Footer>
       </Modal>
 
