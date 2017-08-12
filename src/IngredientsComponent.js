@@ -1,5 +1,4 @@
 var React = require('react');
-var PropTypes = require('prop-types');
 var Accordion = require('react-bootstrap').Accordion;
 var Panel = require('react-bootstrap').Panel;
 var Modal = require('react-bootstrap').Modal;
