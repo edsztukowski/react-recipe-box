@@ -54,7 +54,7 @@ class RecipeContainer extends React.Component {
   render() {
     var recipesList = this.state.recipes;
     return (
-      <div className="row all-recipes">
+      <div className="all-recipes">
         {recipesList.map(function(curr, index) {
           return (
             <IngredientsComponent

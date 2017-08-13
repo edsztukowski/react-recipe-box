@@ -1,25 +1,29 @@
+html {
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #f6f6f6;
+}
+
 .header-row {
-  margin-bottom: 1em;
+  text-align: center;
+  background: #68C3A3;
+  color: #333;
+  padding: 2em 0;
+}
+
+.header-row p {
+  margin: 0 0 2em 0;
+  font-size: 15px;
 }
 
 h1 {
-  text-align: center;
   font-size: 50px;
-}
-
-hr {
-    height: 4px;
-    width: 70px;
-    text-align: center;
-    position: relative;
-    background: #57bc90;
-    margin: 0 auto;
-    margin-bottom: 30px;
-    border: 0;
-}
-
-.ingredients-container {
-  visibility: 0;
+  font-family: 'Josefin Sans', sans-serif;
+  margin-left: 0;
+  color: #fff
 }
 
 .ingredients-list {
@@ -117,4 +121,14 @@ button.btn-default.close-btn:hover, button.btn-default.close-btn:focus, button.b
 .edit-btn, .delete-btn {
   display: inline-block;
   margin: 0 1em 0 0
+}
+
+.footer {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 1em;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
 }
