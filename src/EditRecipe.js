@@ -1,4 +1,5 @@
 var React = require('react');
+var Button = require('react-bootstrap').Button;
 
 class EditRecipe extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class EditRecipe extends React.Component {
     this.setState(function() {
       return {
         recipes: {
-          title: this.state.title,
+          title: this.state.recipes.title,
           ingredients:value
         }
       }
@@ -39,9 +40,10 @@ class EditRecipe extends React.Component {
 
   render() {
     return(
-      <div className="recipe-form">
+      <div className="edit-form">
         <form onSubmit={this.handleEdit}>
-        <p>{this.state.recipes.title}</p>
+        <h2 className="edit-header">{this.state.recipes.title}</h2>
+        <p>Edit recipes with comma separated values and hit enter</p>
           <input
             id="ingredients"
             placeholder="new recipe ingredients"
@@ -51,6 +53,7 @@ class EditRecipe extends React.Component {
             onChange={this.handleIngredients}
           />
         </form>
+        <Button className="close-btn" onClick={this.props.hideModal}>Close</Button>
       </div>
     )
   }

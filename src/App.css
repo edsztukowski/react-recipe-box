@@ -41,11 +41,15 @@ hr {
   margin: 0 auto 0;
 }
 
-.add-header {
+.add-header,
+.edit-header {
   display: block;
   text-align: center;
-  margin-bottom: 1.5em;
   font-size: 25px;
+}
+
+.add-header {
+  margin-bottom: 1.5em;
 }
 
 .flex-row {
@@ -53,12 +57,14 @@ hr {
   justify-content: space-around;
 }
 
-.add-form input {
+.add-form input,
+.edit-form input {
   border: none;
   border-bottom: 1px solid #ccc;
 }
 
-.add-form input:focus {
+.add-form input:focus,
+.edit-form input:focus {
   outline: 0;
   border-bottom: 1px solid #333;
 }
@@ -97,4 +103,18 @@ button.btn-default.close-btn:hover, button.btn-default.close-btn:focus, button.b
 
 .add-btn {
   margin-top: 3em;
+}
+
+.edit-form p {
+  text-align: center;
+}
+
+.edit-form input {
+  width: 100%;
+  margin: 2em 0;
+}
+
+.edit-btn, .delete-btn {
+  display: inline-block;
+  margin: 0 1em 0 0
 }

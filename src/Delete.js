@@ -11,7 +11,6 @@ class Delete extends React.Component {
       }
     }
     this.handleDelete = this.handleDelete.bind(this);
-
   }
 
   handleDelete(props) {
@@ -20,17 +19,18 @@ class Delete extends React.Component {
     }
     for (var i = 0; i < newStorage.recipes.length; i++) {
       if (newStorage.recipes[i].title === this.props.title) {
-        newStorage.recipes = this.state.recipes.splice(i, 1);
-      }
+       newStorage.recipes.splice(i, 1);
+     }
     }
     localStorage.setItem('recipes', JSON.stringify(newStorage));
+    this.props.updateList(JSON.parse(localStorage.getItem('recipes')).recipes)
   }
 
   render() {
     return(
       <div className="recipe-form">
-        <Button onSubmit={this.handleDelete}>
-          DELETE
+        <Button className="btn btn-lg btn-danger" onClick={this.handleDelete}>
+          Delete
         </Button>
       </div>
     )
