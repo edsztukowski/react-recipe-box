@@ -113,3 +113,8 @@ button.btn-default.close-btn:hover, button.btn-default.close-btn:focus, button.b
   width: 100%;
   margin: 2em 0;
 }
+
+.edit-btn, .delete-btn {
+  display: inline-block;
+  margin: 0 1em 0 0
+}

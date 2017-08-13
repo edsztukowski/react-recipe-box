@@ -41,11 +41,11 @@ class RecipeContainer extends React.Component {
     this.setState({ showModal2: true});
   }
 
-  updateRecipe() {
+  updateRecipe(newList) {
     return (
       this.setState(function()  {
         return {
-          recipes:JSON.parse(localStorage.getItem('recipes')).recipes
+          recipes:newList
         }
       })
     )
@@ -66,6 +66,7 @@ class RecipeContainer extends React.Component {
               modalHide={this.editClose}
               clickHandler={e => this.clickHandler(e, index)}
               key={curr + index}
+              updateRecipe={this.updateRecipe}
             />
           )
         }, this)}

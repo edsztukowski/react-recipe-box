@@ -4,6 +4,7 @@ var Panel = require('react-bootstrap').Panel;
 var Modal = require('react-bootstrap').Modal;
 var EditRecipe = require('./EditRecipe');
 var Button = require('react-bootstrap').Button;
+var Delete = require('./Delete');
 
 function IngredientsComponent(props) {
   return (
@@ -28,6 +29,9 @@ function IngredientsComponent(props) {
                  Edit
                </Button>
               </div>
+              <div className="delete-btn">
+                <Delete updateList={props.updateRecipe} title={props.title} ingredients={props.ingredients}/>
+               </div>
               <Modal
                 id={props.curr}
                 show={props.modalShow === props.index}
